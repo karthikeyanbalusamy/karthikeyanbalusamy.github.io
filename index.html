@@ -1,0 +1,725 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Karthikeyan Balusami Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single column with a sticky section index on wide screens.
+   Palette: cool slate paper with one deep teal accent and a small amber signal. */
+:root {
+  --bg: #EEF1F3;
+  --surface: #FFFFFF;
+  --fg: #15191F;
+  --muted: #5B6672;
+  --line: #D3DBE1;
+  --accent: #1F6F78;
+  --signal: #B8651B;
+  --chip: #E2E9ED;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1418;
+    --surface: #161D23;
+    --fg: #E6EBEF;
+    --muted: #8E9AA6;
+    --line: #2A343D;
+    --accent: #6CC3CB;
+    --signal: #E9A552;
+    --chip: #1F2A32;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1418;
+  --surface: #161D23;
+  --fg: #E6EBEF;
+  --muted: #8E9AA6;
+  --line: #2A343D;
+  --accent: #6CC3CB;
+  --signal: #E9A552;
+  --chip: #1F2A32;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: inherit; }
+img, svg { max-width: 100%; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 0; min-width: 0; }
+
+/* Top bar */
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-block: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+}
+.nav { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; }
+.nav a { color: var(--muted); text-decoration: none; padding-block: 4px; }
+.nav a:hover { color: var(--fg); }
+.theme-btn {
+  font: inherit;
+  font-size: 13px;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* Intro */
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 40px;
+  padding-block: 56px 48px;
+  align-items: end;
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 14px;
+}
+h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+.lede {
+  font-size: 19px;
+  color: var(--fg);
+  max-width: 60ch;
+  margin: 0 0 24px;
+}
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--fg);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+.skills {
+  border-left: 2px solid var(--signal);
+  padding-left: 20px;
+  margin: 0;
+  min-width: 0;
+}
+.skills h2 {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+.skills ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.skills li { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; }
+.skills li span:last-child { font-family: var(--mono); font-size: 13px; color: var(--muted); text-align: right; }
+
+/* Sections */
+section.block { padding-block: 40px; border-top: 1px solid var(--line); }
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-bottom: 24px;
+}
+.section-head h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(26px, 4vw, 36px);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.section-head p { margin: 0; color: var(--muted); max-width: 52ch; font-size: 15px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 20px;
+}
+
+/* Project cards: the whole card is the GitHub link */
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.thumb { background: var(--chip); aspect-ratio: 16 / 9; border-bottom: 1px solid var(--line); }
+.thumb svg { width: 100%; height: 100%; display: block; }
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 20px 20px;
+  flex: 1;
+  min-width: 0;
+}
+.cat {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.card h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 1.2;
+  margin: 0;
+  text-wrap: balance;
+}
+.card p { margin: 0; font-size: 15px; color: var(--muted); }
+.stack {
+  list-style: none;
+  padding: 0;
+  margin: auto 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.stack li {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--chip);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+.gh {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-top: 6px;
+}
+.card:hover .gh { text-decoration: underline; }
+
+.contact { padding-block: 40px 56px; border-top: 1px solid var(--line); }
+.contact h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(26px, 4vw, 36px);
+  margin: 0 0 10px;
+}
+.contact p { margin: 0 0 20px; color: var(--muted); max-width: 56ch; }
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.email-row code {
+  font-family: var(--mono);
+  font-size: 15px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  user-select: all;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.foot {
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  padding-block: 20px 32px;
+}
+
+.certs { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; max-width: 720px; }
+.certs li { border-top: 1px solid var(--line); padding-top: 14px; font-weight: 500; }
+.certs span { display: block; font-size: 14px; color: var(--muted); font-weight: 400; }
+
+@media (max-width: 760px) {
+  .intro { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-block: 36px 32px; }
+  .nav { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover { transform: none; }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="topbar">
+    <a class="brand" href="#top">Karthikeyan Balusami</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#agents">Agentic AI</a>
+      <a href="#ml">Machine Learning</a>
+      <a href="#dl">Deep Learning</a>
+      <a href="#eda">EDA</a>
+      <a href="#certs">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-btn" id="theme" type="button" aria-label="Switch color theme">Theme: system</button>
+  </header>
+
+  <div id="top"></div>
+  <section class="intro" aria-labelledby="about">
+    <div>
+      <p class="eyebrow">Senior Applied Agentic AI Engineer</p>
+      <h1 id="about">Agents that do real work, built on solid data.</h1>
+      <p class="lede">I build LLM agents, RAG systems and MCP servers, and measure them with RAGAS before they reach users. I bring more than 20 years of enterprise technology experience across banking and insurance.</p>
+      <div class="links">
+        <a class="btn primary" href="https://github.com/karthikeyanbalusamy" target="_blank" rel="noopener noreferrer">GitHub profile</a>
+        <a class="btn" href="https://www.linkedin.com/in/karthikeyan-b-ai/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="btn" href="https://medium.com/@your-medium-id" target="_blank" rel="noopener noreferrer">Medium</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <aside class="skills" aria-label="Core skills">
+      <h2>Core skills</h2>
+      <ul>
+        <li><span>Agent orchestration</span><span>LangGraph, LangChain, MCP</span></li>
+        <li><span>RAG and retrieval</span><span>Qdrant, ChromaDB, FAISS, reranking</span></li>
+        <li><span>LLM evaluation</span><span>RAGAS, LangSmith</span></li>
+        <li><span>Languages and backend</span><span>Python, FastAPI, Pydantic</span></li>
+        <li><span>Data</span><span>PostgreSQL, SQL, Pandas</span></li>
+        <li><span>Cloud and DevOps</span><span>Docker, AWS, GitHub Actions</span></li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="block" id="agents" aria-labelledby="agents-h">
+    <div class="section-head">
+      <h2 id="agents-h">Agentic AI</h2>
+      <p>LLM agents, MCP servers and retrieval systems, each with evaluation built in.</p>
+    </div>
+    <div class="grid" data-cat="agents"></div>
+  </section>
+
+  <section class="block" id="ml" aria-labelledby="ml-h">
+    <div class="section-head">
+      <h2 id="ml-h">Machine learning</h2>
+      <p>Training, validation and deployment of predictive models.</p>
+    </div>
+    <div class="grid" data-cat="ml"></div>
+  </section>
+
+  <section class="block" id="dl" aria-labelledby="dl-h">
+    <div class="section-head">
+      <h2 id="dl-h">Deep learning</h2>
+      <p>Neural networks for text and sequence data.</p>
+    </div>
+    <div class="grid" data-cat="dl"></div>
+  </section>
+
+  <section class="block" id="eda" aria-labelledby="eda-h">
+    <div class="section-head">
+      <h2 id="eda-h">Exploratory data analysis</h2>
+      <p>Profiling, validation and quality checks on messy real-world datasets.</p>
+    </div>
+    <div class="grid" data-cat="eda"></div>
+  </section>
+
+  <section class="block" id="certs" aria-labelledby="certs-h">
+    <div class="section-head">
+      <h2 id="certs-h">Certifications</h2>
+    </div>
+    <ul class="certs">
+      <li>Master Diploma in GenAI and Agentic AI Development <span>Boston Institute of Analytics</span></li>
+      <li>PGP in Data Science &amp; AI <span>Accredian</span></li>
+      <li>MLOps Certification Course <span>Edureka</span></li>
+    </ul>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Let's talk</h2>
+    <p>Open to Agentic AI Engineer roles. Email is the fastest way to reach me.</p>
+    <div class="email-row">
+      <code>karthikeyan.balu.ai@gmail.com</code>
+      <button class="btn" id="copy" type="button">Copy email</button>
+    </div>
+  </section>
+
+  <footer class="foot">Karthikeyan Balusami. Projects link to their GitHub repositories.</footer>
+</div>
+
+<script>
+// Edit this list to change the projects. Each card links to its GitHub repo.
+// A section with no projects hides itself, along with its menu link.
+const REPOS = "https://github.com/karthikeyanbalusamy?tab=repositories";
+const PROJECTS = [
+  {
+    cat: "eda", label: "EDA", art: "bars",
+    name: "Telecom Mobile Usage Analysis",
+    summary: "Analysed 31,742 mobile users across states, phone brands, age groups and gender, plus hourly call patterns. Xiaomi held 63% of users, and usage peaked around 10 AM.",
+    stack: ["Python", "Pandas", "Seaborn"],
+    url: REPOS
+  },
+  {
+    cat: "ml", label: "Machine learning", art: "tree",
+    name: "Vehicle Insurance Cross-Sell Model",
+    summary: "Predicts which health insurance customers will also buy vehicle insurance. Compared logistic regression, KNN, random forest and XGBoost on imbalanced data with SMOTE, and chose XGBoost for 71% recall on the interested class.",
+    stack: ["Python", "scikit-learn", "XGBoost", "imbalanced-learn", "Pandas"],
+    url: REPOS
+  },
+  {
+    cat: "ml", label: "Machine learning", art: "scatter",
+    name: "Employee Retention Analysis",
+    summary: "Examined HR data to find why employees leave, cleaned duplicates and missing values, then built a predictive model to flag employees most likely to leave.",
+    stack: ["Python", "Pandas"],
+    url: REPOS
+  },
+  {
+    cat: "dl", label: "Deep learning", art: "graph",
+    name: "News Article Classifier",
+    summary: "Deep learning text classifier that predicts a news category from headline and description. Compared LSTM, GRU and BERT, and BERT reached 64% accuracy on the test set.",
+    stack: ["Python", "TensorFlow", "Keras", "BERT", "NLTK"],
+    url: REPOS
+  },
+  {
+    cat: "agents", label: "Agentic AI", art: "net",
+    name: "DataPilot: MCP Banking Data Assistant",
+    summary: "MCP server that exposes banking data to LLM agents through tools, resources and prompts. Blocked 30 of 30 adversarial queries with zero PII leaks, and cut session cost by about 80% on a 1M+ row PostgreSQL database.",
+    stack: ["Python", "FastMCP", "OpenAI API", "PostgreSQL", "Docker"],
+    url: REPOS
+  },
+  {
+    cat: "agents", label: "Agentic AI", art: "graph",
+    name: "AI Training Assistant for Onboarding",
+    summary: "LangGraph workflow with query classification, vector retrieval, response generation and fallbacks. Reached 98% query routing accuracy and 0.95 RAGAS faithfulness.",
+    stack: ["LangGraph", "ChromaDB", "FastAPI", "React", "RAGAS", "Gemini 2.5 Flash"],
+    url: REPOS
+  },
+  {
+    cat: "agents", label: "RAG pipeline", art: "bars",
+    name: "Financial Policy Retrieval Pipeline",
+    summary: "Ingestion and indexing pipeline over 28 web and PDF sources covering 14 savings, pension, insurance and credit schemes. Cross-encoder reranking raised Hit@1 from 67% to 93%.",
+    stack: ["Python", "ChromaDB", "Sentence-Transformers", "Cross-Encoder", "PyMuPDF"],
+    url: REPOS
+  },
+  {
+    cat: "agents", label: "RAG assistant", art: "tree",
+    name: "Internal Training Content Search",
+    summary: "Citation-backed Streamlit assistant that searches PDF, Markdown and screenshot sources, with a RAG evaluation framework. Averaged 5 of 5 retrieval relevance on the internal evaluation set.",
+    stack: ["Streamlit", "ChromaDB", "Sentence-Transformers", "pytesseract", "OpenAI API"],
+    url: REPOS
+  }
+];
+
+// Exact repository links for projects that have one. Others use the repositories page.
+const REPO_BY_NAME = {
+  "AI Training Assistant for Onboarding": "https://github.com/karthikeyanbalusamy/employee-onboarding-ai-assistant",
+  "Vehicle Insurance Cross-Sell Model": "https://github.com/karthikeyanbalusamy/vehicle-insurance-cross-sell-prediction",
+  "News Article Classifier": "https://github.com/karthikeyanbalusamy/news-article-classification-nlp",
+  "Telecom Mobile Usage Analysis": "https://github.com/karthikeyanbalusamy/mobiledata",
+  "Employee Retention Analysis": "https://github.com/karthikeyanbalusamy/employee_retention",
+  "Internal Training Content Search": "https://github.com/karthikeyanbalusamy/employee-onboarding-ai-assistant"
+};
+
+const NS = "http://www.w3.org/2000/svg";
+const W = 320, H = 180;
+
+function svgEl(tag, attrs, style) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (style) e.setAttribute("style", style);
+  return e;
+}
+
+// Each thumbnail is a small schematic tied to the project type, drawn in theme tokens.
+function thumbOld(kind) {
+  const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-hidden": "true", preserveAspectRatio: "xMidYMid meet" });
+  const ink = "fill:var(--accent)";
+  const soft = "fill:var(--muted);opacity:0.8";
+  const line = "stroke:var(--muted);stroke-width:1.5;fill:none;opacity:0.6";
+  const hi = "fill:var(--signal)";
+
+  if (kind === "bars") {
+    svg.appendChild(svgEl("line", { x1: 28, y1: 150, x2: 300, y2: 150 }, line));
+    const hs = [40, 72, 58, 96, 120, 84, 104, 66];
+    hs.forEach((h, i) => svg.appendChild(svgEl("rect", { x: 40 + i * 32, y: 150 - h, width: 18, height: h, rx: 3 }, i === 4 ? hi : ink)));
+  } else if (kind === "scatter") {
+    svg.appendChild(svgEl("line", { x1: 28, y1: 150, x2: 300, y2: 150 }, line));
+    svg.appendChild(svgEl("line", { x1: 28, y1: 20, x2: 28, y2: 150 }, line));
+    const pts = [[52,128],[70,118],[88,122],[104,104],[126,98],[142,92],[160,84],[178,80],[196,70],[214,66],[232,58],[250,52],[266,44],[98,132],[190,96],[240,80]];
+    pts.forEach(([x, y]) => svg.appendChild(svgEl("circle", { cx: x, cy: y, r: 4.5 }, soft)));
+    svg.appendChild(svgEl("line", { x1: 40, y1: 140, x2: 290, y2: 40, "stroke-dasharray": "5 4" }, "stroke:var(--signal);stroke-width:2;fill:none"));
+  } else if (kind === "tree") {
+    const nodes = { root: [160, 30], a: [90, 90], b: [230, 90], c: [56, 150], d: [124, 150], e: [196, 150], f: [264, 150] };
+    const edges = [["root","a"],["root","b"],["a","c"],["a","d"],["b","e"],["b","f"]];
+    edges.forEach(([p, c]) => svg.appendChild(svgEl("line", { x1: nodes[p][0], y1: nodes[p][1], x2: nodes[c][0], y2: nodes[c][1] }, line)));
+    Object.entries(nodes).forEach(([k, [x, y]]) => svg.appendChild(svgEl("circle", { cx: x, cy: y, r: k === "root" ? 12 : 9 }, k === "d" ? hi : ink)));
+  } else if (kind === "line") {
+    svg.appendChild(svgEl("line", { x1: 24, y1: 150, x2: 300, y2: 150 }, line));
+    const top = [70, 66, 80, 74, 62, 58, 70, 64, 52, 56, 48, 50];
+    const bot = top.map((v) => v + 30);
+    const band = top.map((y, i) => `${24 + i * 24.5},${y}`).concat(bot.map((y, i) => `${24 + (bot.length - 1 - i) * 24.5},${y}`)).join(" ");
+    svg.appendChild(svgEl("polygon", { points: band }, "fill:var(--accent);opacity:0.15"));
+    svg.appendChild(svgEl("polyline", { points: top.map((y, i) => `${24 + i * 24.5},${y + 15}`).join(" ") }, "stroke:var(--accent);stroke-width:2.5;fill:none"));
+    svg.appendChild(svgEl("circle", { cx: 24 + 11 * 24.5, cy: 50 + 15, r: 5 }, hi));
+  } else if (kind === "graph") {
+    const n = [[40,90],[120,40],[120,140],[200,90],[280,40],[280,140]];
+    const e = [[0,1],[0,2],[1,3],[2,3],[3,4],[3,5]];
+    e.forEach(([a, b]) => svg.appendChild(svgEl("line", { x1: n[a][0], y1: n[a][1], x2: n[b][0], y2: n[b][1] }, line)));
+    n.forEach(([x, y], i) => svg.appendChild(svgEl("circle", { cx: x, cy: y, r: i === 3 ? 14 : 10 }, i === 3 ? hi : ink)));
+  } else {
+    const n = [[60,60],[160,36],[260,70],[90,140],[190,150],[272,130]];
+    const e = [[0,1],[1,2],[0,3],[3,4],[4,5],[2,5],[1,4]];
+    e.forEach(([a, b]) => svg.appendChild(svgEl("line", { x1: n[a][0], y1: n[a][1], x2: n[b][0], y2: n[b][1] }, line)));
+    n.forEach(([x, y], i) => svg.appendChild(svgEl("rect", { x: x - 12, y: y - 12, width: 24, height: 24, rx: 6 }, i === 4 ? hi : ink)));
+  }
+  return svg;
+}
+
+// Project-specific illustrations, drawn in theme tokens so they follow light and dark mode.
+function thumb(name) {
+  const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-hidden": "true", preserveAspectRatio: "xMidYMid meet" });
+  const A = "fill:var(--accent)", S = "fill:var(--signal)", M = "fill:var(--muted)";
+  const SURF = "fill:var(--surface);stroke:var(--muted);stroke-width:1.5";
+  const LINE = "stroke:var(--muted);stroke-width:1.5;fill:none;opacity:0.6";
+  const LA = "stroke:var(--accent);stroke-width:2;fill:none";
+  const LS = "stroke:var(--signal);stroke-width:2;fill:none;stroke-dasharray:4 4";
+  const TXT = "font-family:var(--mono);font-size:10px;fill:var(--muted)";
+  const r = (x, y, w, h, rx, st) => svg.appendChild(svgEl("rect", { x, y, width: w, height: h, rx: rx || 0 }, st));
+  const c = (x, y, rad, st) => svg.appendChild(svgEl("circle", { cx: x, cy: y, r: rad }, st));
+  const l = (x1, y1, x2, y2, st) => svg.appendChild(svgEl("line", { x1, y1, x2, y2 }, st));
+  const p = (d, st) => svg.appendChild(svgEl("path", { d }, st));
+  const t = (x, y, s, st) => { const e = svgEl("text", { x, y }, st || TXT); e.textContent = s; svg.appendChild(e); };
+
+  if (name.includes("DataPilot")) {
+    // Banking database feeding an MCP server, with an agent answering safely.
+    svg.appendChild(svgEl("ellipse", { cx: 56, cy: 58, rx: 28, ry: 10 }, "fill:var(--surface);stroke:var(--accent);stroke-width:2"));
+    p("M28 58 V120 A28 10 0 0 0 84 120 V58", "fill:var(--surface);stroke:var(--accent);stroke-width:2");
+    l(28, 80, 84, 80, "stroke:var(--accent);stroke-width:1;opacity:0.5");
+    l(28, 100, 84, 100, "stroke:var(--accent);stroke-width:1;opacity:0.5");
+    r(128, 60, 62, 60, 8, SURF);
+    c(142, 76, 3.5, S); c(153, 76, 3.5, A); c(164, 76, 3.5, M);
+    l(136, 96, 182, 96, LINE); l(136, 106, 170, 106, LINE);
+    r(222, 46, 76, 34, 12, A);
+    t(234, 68, "SELECT ...", "font-family:var(--mono);font-size:10px;fill:var(--bg)");
+    r(222, 92, 76, 28, 12, "fill:var(--chip)");
+    t(234, 110, "PII masked", TXT.replace("var(--muted)", "var(--fg)"));
+    l(84, 90, 128, 90, LA);
+    l(190, 90, 222, 64, LA);
+    l(190, 100, 222, 106, LA);
+    p("M160 140 L174 146 V158 C174 166 160 170 160 170 C160 170 146 166 146 158 V146 Z", S);
+    t(196, 162, "30/30 blocked", TXT);
+  } else if (name.includes("Onboarding")) {
+    // LangGraph flow: classify, retrieve, respond, with a fallback branch.
+    t(24, 34, "employee query", TXT);
+    r(24, 46, 74, 34, 8, A);
+    r(122, 46, 74, 34, 8, A);
+    r(220, 46, 74, 34, 8, A);
+    t(40, 67, "classify", "font-family:var(--mono);font-size:11px;fill:var(--bg)");
+    t(134, 67, "retrieve", "font-family:var(--mono);font-size:11px;fill:var(--bg)");
+    t(232, 67, "respond", "font-family:var(--mono);font-size:11px;fill:var(--bg)");
+    l(98, 63, 122, 63, LA);
+    l(196, 63, 220, 63, LA);
+    p("M61 80 V122 H159 V80", "stroke:var(--signal);stroke-width:2;fill:none;stroke-dasharray:4 4");
+    r(122, 118, 74, 30, 8, "fill:var(--surface);stroke:var(--signal);stroke-width:1.5");
+    t(136, 137, "fallback", "font-family:var(--mono);font-size:11px;fill:var(--signal)");
+    l(196, 133, 257, 133, LS);
+    p("M257 133 V80", LS);
+    t(24, 170, "RAGAS 0.95 faithfulness", TXT);
+  } else if (name.includes("Financial Policy")) {
+    // Documents from many sources funnel into a vector index.
+    r(22, 58, 50, 66, 4, SURF); r(34, 48, 50, 66, 4, SURF); r(46, 38, 50, 66, 4, SURF);
+    l(54, 52, 84, 52, LINE); l(54, 62, 84, 62, LINE); l(58, 72, 86, 72, LINE);
+    p("M112 60 L154 60 L146 120 L120 120 Z", "fill:var(--accent);opacity:0.18");
+    l(112, 60, 146, 120, LA);
+    for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) {
+      const op = ((i * 4 + j) % 5 === 0) ? 0.9 : 0.35;
+      svg.appendChild(svgEl("rect", { x: 186 + j * 26, y: 44 + i * 26, width: 18, height: 18, rx: 4 }, `fill:var(--accent);opacity:${op}`));
+    }
+    t(186, 160, "cross-encoder rerank", TXT);
+  } else if (name.includes("Internal Training")) {
+    // Search box with ranked cited results.
+    r(22, 22, 276, 34, 17, SURF);
+    c(40, 39, 7, "fill:none;stroke:var(--accent);stroke-width:2");
+    l(45, 44, 51, 50, LA);
+    l(64, 39, 230, 39, LINE);
+    r(22, 70, 276, 32, 8, "fill:var(--surface);stroke:var(--accent);stroke-width:1.5");
+    l(36, 84, 180, 84, LINE); l(36, 94, 130, 94, LINE);
+    r(232, 78, 56, 16, 8, S);
+    r(22, 112, 276, 32, 8, SURF);
+    l(36, 126, 200, 126, LINE); l(36, 136, 150, 136, LINE);
+    r(22, 154, 276, 16, 0, "fill:none");
+    t(24, 168, "5/5 relevance, cited sources", TXT);
+  } else if (name.includes("Telecom")) {
+    // State bars and a brand share donut.
+    const bars = [[52, 150, "MH"], [78, 112, "KA"], [104, 108, "WB"], [130, 96, "DL"], [156, 70, "TN"]];
+    bars.forEach(([y, w, lbl]) => {
+      t(22, y + 9, lbl);
+      r(48, y, w, 14, 3, A);
+    });
+    c(262, 92, 30, "fill:none;stroke:var(--chip);stroke-width:14");
+    svg.appendChild(svgEl("circle", { cx: 262, cy: 92, r: 30, transform: "rotate(-90 262 92)" }, "fill:none;stroke:var(--accent);stroke-width:14;stroke-dasharray:118.8 188.5"));
+    svg.appendChild(svgEl("circle", { cx: 262, cy: 92, r: 30, transform: "rotate(-90 262 92)" }, "fill:none;stroke:var(--signal);stroke-width:14;stroke-dasharray:0 0"));
+    t(248, 96, "63%", "font-family:var(--mono);font-size:11px;fill:var(--fg)");
+    t(22, 170, "users by state", TXT);
+  } else if (name.includes("Insurance")) {
+    // ROC curve beside a car, for vehicle insurance interest.
+    l(36, 150, 36, 28, LINE); l(36, 150, 196, 150, LINE);
+    l(36, 150, 196, 30, "stroke:var(--muted);stroke-width:1.2;stroke-dasharray:4 4;opacity:0.6");
+    p("M36 150 C 70 70, 110 42, 196 30", "fill:none;stroke:var(--accent);stroke-width:2.5");
+    t(44, 46, "AUC 0.85", "font-family:var(--mono);font-size:11px;fill:var(--accent)");
+    p("M218 118 L232 96 H262 L276 118 Z", "fill:var(--accent)");
+    p("M236 96 L244 82 H258 L264 96 Z", "fill:var(--surface)");
+    c(236, 120, 9, "fill:var(--signal)");
+    c(262, 120, 9, "fill:var(--signal)");
+    t(218, 160, "vehicle interest", TXT);
+  } else if (name.includes("Retention")) {
+    // Three employees, one leaving, to show attrition.
+    const person = (x, fill) => {
+      c(x, 64, 14, fill);
+      r(x - 22, 86, 44, 52, 20, fill);
+    };
+    person(70, "fill:var(--accent)");
+    person(160, "fill:var(--accent)");
+    person(250, "fill:var(--muted);opacity:0.45");
+    l(262, 120, 304, 120, LS);
+    p("M298 114 L306 120 L298 126", LS);
+    t(22, 160, "who leaves, and why", TXT);
+  } else if (name.includes("News")) {
+    // Headline text flows into one predicted category.
+    [44, 60, 76, 92, 108].forEach((y, i) => {
+      r(22, y, [120, 96, 110, 84, 102][i], 7, 3, M);
+    });
+    p("M160 90 L176 90", LA);
+    p("M172 84 L180 90 L172 96", LA);
+    const tags = [["Sports", 40], ["Politics", 66], ["Tech", 92], ["Arts", 118]];
+    tags.forEach(([lbl, y], i) => {
+      const hot = lbl === "Tech";
+      r(190, y - 6, 106, 22, 11, hot ? "fill:var(--accent)" : "fill:var(--surface);stroke:var(--line);stroke-width:1");
+      t(206, y + 9, lbl, hot ? "font-family:var(--mono);font-size:11px;fill:var(--bg)" : "font-family:var(--mono);font-size:11px;fill:var(--muted)");
+    });
+    t(190, 160, "BERT, 64% test accuracy", TXT);
+  } else {
+    // Fallback for any project without a custom illustration.
+    c(160, 90, 30, A);
+  }
+  return svg;
+}
+
+function card(p) {
+  const a = document.createElement("a");
+  a.className = "card";
+  a.href = REPO_BY_NAME[p.name] || p.url;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  a.setAttribute("aria-label", `${p.name}, opens GitHub repository`);
+
+  const t = document.createElement("div");
+  t.className = "thumb";
+  t.appendChild(thumb(p.name));
+
+  const b = document.createElement("div");
+  b.className = "card-body";
+  b.innerHTML = `
+    <span class="cat"></span>
+    <h3></h3>
+    <p></p>
+    <ul class="stack"></ul>
+    <span class="gh">View on GitHub &rarr;</span>`;
+  b.querySelector(".cat").textContent = p.label;
+  b.querySelector("h3").textContent = p.name;
+  b.querySelector("p").textContent = p.summary;
+  const ul = b.querySelector(".stack");
+  p.stack.forEach((s) => {
+    const li = document.createElement("li");
+    li.textContent = s;
+    ul.appendChild(li);
+  });
+
+  a.appendChild(t);
+  a.appendChild(b);
+  return a;
+}
+
+document.querySelectorAll(".grid[data-cat]").forEach((grid) => {
+  PROJECTS.filter((p) => p.cat === grid.dataset.cat).forEach((p) => grid.appendChild(card(p)));
+  if (!grid.children.length) {
+    const section = grid.closest("section");
+    section.hidden = true;
+    const link = document.querySelector(`.nav a[href="#${section.id}"]`);
+    if (link) link.hidden = true;
+  }
+});
+
+// Theme toggle: system, then light, then dark.
+const themes = ["system", "light", "dark"];
+const btn = document.getElementById("theme");
+let ti = 0;
+btn.addEventListener("click", () => {
+  ti = (ti + 1) % themes.length;
+  const t = themes[ti];
+  try {
+    if (t === "system") document.documentElement.removeAttribute("data-theme");
+    else document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+  btn.textContent = "Theme: " + t;
+});
+
+// Copy email, falling back to selecting the text.
+const copyBtn = document.getElementById("copy");
+copyBtn.addEventListener("click", () => {
+  const email = "karthikeyan.balu.ai@gmail.com";
+  const done = () => { copyBtn.textContent = "Copied"; setTimeout(() => (copyBtn.textContent = "Copy email"), 1800); };
+  const fallback = () => {
+    const r = document.createRange();
+    r.selectNodeContents(document.querySelector(".email-row code"));
+    const s = window.getSelection();
+    s.removeAllRanges();
+    s.addRange(r);
+    copyBtn.textContent = "Selected, press Ctrl+C";
+  };
+  try {
+    navigator.clipboard.writeText(email).then(done, fallback);
+  } catch (e) {
+    fallback();
+  }
+});
+</script>
+
+</body></html>
